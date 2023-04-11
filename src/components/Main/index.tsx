@@ -1,3 +1,4 @@
+import Header from 'components/Layouts/Header'
 import * as S from './styles'
 
 const Main = ({
@@ -5,6 +6,7 @@ const Main = ({
   description = 'TypeScript, ReactJS, NextJS & Styled Components',
 }) => (
   <S.Wrapper>
+    <Header></Header>
     <S.Title>{title}</S.Title>
     <S.Description>{description}</S.Description>
   </S.Wrapper>
