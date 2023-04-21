@@ -5,5 +5,8 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     disable: !isProd,
-  },
+  }, images: {
+    domains: ["a.storyblok.com"]
+  }
+
 })
