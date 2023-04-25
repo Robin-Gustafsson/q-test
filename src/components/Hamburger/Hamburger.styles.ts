@@ -6,6 +6,9 @@ interface PropsBurger {
 }
 
 export const HamburgerParent = styled.div`
+@media screen and (min-width: 1006px) {
+  display: none;
+}
   width: 2rem;
   height: 0.1rem;
   margin: 0.5rem;
@@ -24,16 +27,16 @@ export const HamburgerParent = styled.div`
     opacity: 1;
     :nth-child(1) {
       transform: ${(props: any) =>
-        props.props === true ? 'rotate(45deg) translateY(6px);' : 'unset;'};
+    props.props === true ? 'rotate(45deg) translateY(6px);' : 'unset;'};
     }
 
     :nth-child(3) {
         transform: ${(props: any) =>
-          props.props === true ? 'rotate(-45deg) translateY(-7px);' : 'unset;'};
+    props.props === true ? 'rotate(-45deg) translateY(-7px);' : 'unset;'};
   }
   :nth-child(2) {
       transform: ${(props: any) =>
-        props.props === true ? 'translateX(200%);' : 'unset;'};
+    props.props === true ? 'translateX(200%);' : 'unset;'};
         opacity: ${(props: any) => (props.props === true ? '0;' : '1;')}; 
 
 }

@@ -16,37 +16,28 @@ const Header = () => {
       <S.HeaderWrapper>
         <S.MenuItem>
           <LogoComponent></LogoComponent>
-          {/*We are doing if else statements, if the screen is bigger than width 1100 or below this size, we want to display different information depending on if its desktop or mobile.*/}
-          {size.width > 1100 && (
-            <>
-              <S.MenuItem>
-                <Category></Category>
-              </S.MenuItem>
-            </>
-          )}
+
+          <S.MenuItem className="MobileHidden">
+            <Category></Category>
+          </S.MenuItem>
         </S.MenuItem>
 
         <S.MenuItem>
-          {size.width > 1100 && (
-            <S.MenuItem>
-              <div>
-                <a>Customer Service</a>
-              </div>
-              <div>
-                <button>SE | EN</button>
-              </div>
-            </S.MenuItem>
-          )}
+          <S.MenuItem className="MobileHidden">
+            <div>
+              <a>Customer Service</a>
+            </div>
+            <div>
+              <button>SE | EN</button>
+            </div>
+          </S.MenuItem>
+
           <IconsComponent></IconsComponent>
 
-          {size.width < 1100 && (
-            <>
-              <S.NavParent onClick={() => setActive(!active)}>
-                <Hamburger props={active}></Hamburger>
-              </S.NavParent>
-              <Mobile props={active}></Mobile>
-            </>
-          )}
+          <S.NavParent onClick={() => setActive(!active)}>
+            <Hamburger props={active}></Hamburger>
+          </S.NavParent>
+          <Mobile props={active}></Mobile>
         </S.MenuItem>
       </S.HeaderWrapper>
     </S.Header>
