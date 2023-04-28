@@ -1,48 +1,67 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import * as S from './Newsletter.styles'
 
-export default function Home() {
-  const [state, setState] = useState(0)
-  const [errorMsg, setErrorMsg] = useState('')
-  //0 - inital, 1 - loading, 2 - success, 2 - error
 
-  const subscribe = async (e: any) => {
-    e.preventDefault()
+type Level = number
+type ErrorMsg = string | null
 
-    setState(1)
-    setErrorMsg('')
-    // console.log(e.target[0].value);
-    try {
-      const res = await fetch('/api/newsletter', {
-        method: 'POST',
-        body: e.target[0].value,
-      })
+type ApiResponse = {
+    error: string | null
+}
 
-      const data = await res.json()
-      //if data is not equal, not null
-      if (data.error !== null) {
-        throw data.error
-      }
-      setState(2)
-    } catch (e) {
-      setErrorMsg(e)
-      setState(3)
+export default function Home(): JSX.Element {
+    const [level, setLevel] = useState(1)
+    const [errorMsg, setErrorMsg] = useState("")
+
+    const subscribe = async (e: any) => {
+        e.preventDefault()
+
+        setLevel(2)
+
+        setErrorMsg(' ')
+        try {
+            const res = await fetch('/api/newsletter', {
+                method: 'POST',
+                body: e.target[0].value,
+            })
+            const data = await res.json()
+
+            console.log(data);
+
+
+
+
+        } catch (e) {
+            setErrorMsg('')
+        }
+
+        console.log(level);
+
     }
-  }
-  return (
-    <div>
-      {state == 2 ? (
-        <p className="font-medium mt-4 text-xl text-green-800">
-          {' '}
-          Thanks for subscribing, you will receive mail once we laucnch our
-          website.
-        </p>
-      ) : (
-        <form onSubmit={subscribe} className="flex flex-col mb-9 mt-4">
-          <input required placeholder="Email address" type="email" />
-          <button type="submit">Subscribe</button>
-          {state === 3 ? <p className="text-red-500 mt-3">{errorMsg}</p> : ''}
-        </form>
-      )}
-    </div>
-  )
+    return (
+
+
+        <div style={{ width: '45%', height: '100%', display: 'block', position: 'absolute', zIndex: 1000, top: '90%' }}>
+            {level === 2 ? (
+
+                <p className="font-medium mt-4 text-xl text-green-800" style={{ color: 'black', fontSize: '17px', backgroundColor: 'white', padding: '10px', margin: '10px' }}>
+
+                    Thanks for subscribing, you will receive mail once we launch our
+                    website.
+
+                </p>
+
+            ) : (
+
+                <form onSubmit={subscribe} className="flex flex-col mb-9 mt-4">
+                    <input required placeholder="Email address" type="email" style={{ backgroundColor: 'white', color: 'black', padding: '10px', margin: '10px', border: 'none', fontSize: '17px' }} />
+                    <button type="submit" style={{ padding: '10px', margin: '10px', border: 'none', backgroundColor: 'black', color: 'white', fontSize: '17px' }}>Subscribe</button>
+                    {level === 3 ? <p className="text-red-500 mt-3">{errorMsg}</p> : ''}
+                </form>
+
+            )
+            }
+        </div >
+
+    )
 }

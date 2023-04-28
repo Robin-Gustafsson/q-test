@@ -6,7 +6,7 @@ interface PropsBurger {
 }
 
 export const HamburgerParent = styled.div`
-@media screen and (min-width: 1006px) {
+@media screen and (min-width: 1109px) {
   display: none;
 }
   width: 2rem;
@@ -16,7 +16,6 @@ export const HamburgerParent = styled.div`
   justify-content: space-around;
   flex-direction: column;
   height: 10px;
-
   gap: 4px;
   padding: 0.5px 0 0 0;
 

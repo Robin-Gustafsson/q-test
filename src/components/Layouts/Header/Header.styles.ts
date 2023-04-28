@@ -31,7 +31,7 @@ export const Nav = styled.a``
 
 export const MenuItem = styled.div`
 &.MobileHidden {
-  @media screen and (max-width: 1007px) {
+  @media screen and (max-width: 1110px) {
     display: none;
   }
 }

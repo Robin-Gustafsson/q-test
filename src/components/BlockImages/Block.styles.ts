@@ -7,6 +7,7 @@ export const BlockImage = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 526px);
   gap: 1em;
+
   
   
 
@@ -16,5 +17,7 @@ export const BlockImage = styled.div`
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    
+
   }
 `

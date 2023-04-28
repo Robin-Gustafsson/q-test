@@ -11,17 +11,18 @@ function getRequestParams(email) {
         status: "subscribed",
     };
 
-    const base64ApiKey = Buffer.from(`anystring: ${API_KEY}`).toString("base64")
+    const base64ApiKey = Buffer.from(`apikey: ${API_KEY}`).toString("base64")
     const headers = {
         "Content-Type": "application/json",
-        Authorization: `Basic ${base64ApiKey}`,
+        "Authorization": `Bearer ${base64ApiKey}`,
     };
 
     return { url, data, headers };
 }
 
 export default async function handler(req, res) {
-    const email = req.body;
+    const { email } = req.body;
+    // const { email } = req.body; 
 
     // if else statement if they don't enter an email
     if (!email || !email.length) {
@@ -36,8 +37,14 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 email_address: data.email_address,
                 status: data.status,
+
             }),
+
         });
+
+        const dataRes = await response.json()
+
+        console.log(dataRes);
 
         res.status(200).json({
             error: null,
@@ -48,6 +55,7 @@ export default async function handler(req, res) {
         });
     }
 }
+
 
 
 

@@ -1,6 +1,7 @@
 import * as S from './Hero.styles'
 import Image from 'next/image'
 import Block from 'components/BlockImages'
+import Home from 'components/NewsLetter'
 
 const Hero = () => (
   <S.Hero>
@@ -14,6 +15,7 @@ const Hero = () => (
     />
 
     <Block></Block>
+
   </S.Hero>
 )
 
