@@ -1,67 +1,63 @@
-import React, { useState } from 'react'
+
+import { useState } from 'react'
 import * as S from './Newsletter.styles'
 
+export default function Home() {
+    const [state, setState] = useState(0);
+    const [errorMsg, setErrorMsg] = useState("");
+    // 0 - initial , 1 - loading, 2 - success, 3 - error
 
-type Level = number
-type ErrorMsg = string | null
-
-type ApiResponse = {
-    error: string | null
-}
-
-export default function Home(): JSX.Element {
-    const [level, setLevel] = useState(1)
-    const [errorMsg, setErrorMsg] = useState("")
 
     const subscribe = async (e: any) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        setLevel(2)
+        setState(2);
 
-        setErrorMsg(' ')
+        setErrorMsg("");
+        console.log(e.target[0].value);
         try {
             const res = await fetch('/api/newsletter', {
-                method: 'POST',
+                method: "POST",
                 body: e.target[0].value,
-            })
-            const data = await res.json()
-
-            console.log(data);
-
-
+            });
+            const data = await res.json();
+            if (data.error !== null) {
+                throw data.error;
+            }
 
 
         } catch (e) {
-            setErrorMsg('')
+            setErrorMsg('');
+            setState(3);
         }
+    };
 
-        console.log(level);
 
-    }
+
+
     return (
 
+        <S.div>
+            {state === 2 ? (
 
-        <div style={{ width: '45%', height: '100%', display: 'block', position: 'absolute', zIndex: 1000, top: '90%' }}>
-            {level === 2 ? (
+                <S.PopUp>
+                    <p className="font-medium mt-4 text-xl text-green-800">
 
-                <p className="font-medium mt-4 text-xl text-green-800" style={{ color: 'black', fontSize: '17px', backgroundColor: 'white', padding: '10px', margin: '10px' }}>
-
-                    Thanks for subscribing, you will receive mail once we launch our
-                    website.
-
-                </p>
-
+                        Thank you for subscribing to our newsletter!</p></S.PopUp>
             ) : (
 
-                <form onSubmit={subscribe} className="flex flex-col mb-9 mt-4">
-                    <input required placeholder="Email address" type="email" style={{ backgroundColor: 'white', color: 'black', padding: '10px', margin: '10px', border: 'none', fontSize: '17px' }} />
-                    <button type="submit" style={{ padding: '10px', margin: '10px', border: 'none', backgroundColor: 'black', color: 'white', fontSize: '17px' }}>Subscribe</button>
-                    {level === 3 ? <p className="text-red-500 mt-3">{errorMsg}</p> : ''}
-                </form>
-
+                <S.Form><form onSubmit={subscribe} className="flex flex-col mb-9 mt-4" style={{ display: 'flex' }}>
+                    <S.EmailPlaceholder><input required placeholder="Email address" type="email" style={{ border: 'none', fontSize: '17px' }} /></S.EmailPlaceholder>
+                    <S.EmailBtn type="submit">Subscribe</S.EmailBtn>
+                    {state === 3 ? <p className="text-red-500 mt-3">{errorMsg}</p> : ''}
+                </form></S.Form>
             )
             }
-        </div >
+        </S.div>
 
     )
 }
+
+
+
+

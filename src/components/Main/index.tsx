@@ -10,8 +10,8 @@ const Main = ({
 
 }) => (
   <S.Wrapper>
-    <Header></Header>
 
+    <Header></Header>
     <Hero></Hero>
     <Home></Home>
 

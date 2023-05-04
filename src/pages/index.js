@@ -10,7 +10,7 @@ export default function Home() {
 
         setState(1);
         setErrorMsg("");
-        // console.log(e.target[0].value);
+        console.log(e.target[0].value);
         try {
             const res = await fetch("/api/newsletter", {
                 method: "POST",

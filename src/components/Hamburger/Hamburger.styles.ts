@@ -1,11 +1,10 @@
 import styled from 'styled-components'
-import Hamburger from './Hamburger'
 
 interface PropsBurger {
   props: boolean
 }
 
-export const HamburgerParent = styled.div`
+export const HamburgerParent = styled.div<PropsBurger>`
 @media screen and (min-width: 1109px) {
   display: none;
 }

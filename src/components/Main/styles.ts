@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.main`
   background-color: #fff;
-
   color: #fff;
   width: 100%;
   height: 100%;
@@ -11,6 +10,11 @@ export const Wrapper = styled.main`
   align-items: center;
   justify-content: center;
   gap: 50%;
+
+  @media screen and (max-width: 1400px) {
+    height: 50%;
+  }
+
 `
 
 export const Title = styled.h1`
@@ -24,5 +28,7 @@ export const Description = styled.h2`
   text-align: center;
   display: flex;
   display: inline-block;
-  width: 120px;
+  width: 10px;
 `
+
+

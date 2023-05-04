@@ -1,5 +1,4 @@
-import { findByLabelText } from '@testing-library/react';
-import { monitorEventLoopDelay } from 'perf_hooks';
+
 import styled from 'styled-components'
 
 interface PropsTest {
@@ -7,10 +6,13 @@ interface PropsTest {
 }
 
 const SideBar = styled.div<PropsTest>`
+@media screen and (min-width: 1109px) {
+  display: none;
+}
   position: fixed;
   top: 6vh;
   right: 0;
-  width: 50%;
+  width: 20%;
   height: 93vh;
   background: white;
   flex-direction: column;
@@ -23,6 +25,10 @@ const SideBar = styled.div<PropsTest>`
   font-size: 16px;
   display: flex;
   justify-content: space-evenly;
+  @media screen and (max-width: 1500px) {
+    width: 60%;
+    
+  }
 `
 
 export const MobileCategory = styled.li``
